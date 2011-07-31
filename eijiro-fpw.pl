@@ -93,6 +93,9 @@ while (<>) {
 		$current_pos = '';
 	}
 
+	## FIXME
+	next if ($current_word =~ /^'*$/);
+
 	if ($current_word eq $prev_word) {
 		#
 		# same word as previous, do not write heading or keyword.

@@ -1,0 +1,119 @@
+英辞郎 → JIS X 4081 変換スクリプト
+eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
+
+   Copyright (C) 2011 SATOH Fumiyasu @ OSS Technology, Inc.
+
+   Copyright (C) 2000, Rei <rei@wdic.org>
+   http://member.nifty.ne.jp/~satomii/freepwing/
+
+
+収録ファイル
+============
+
+   - README	       このファイル
+   - copyright.sjis    著作権/使用上の注意 (辞書に取り込まれます)
+   - catalogs.sjis     catalogs.txt のソース ファイル
+   - eijiro-fpw.pl     FreePWING スクリプト
+   - Makefile          GNU make 用の Makefile
+   - COPYING           GNU General Public License
+
+
+オリジナル ファイル
+===================
+
+   英辞郎
+   http://www.eijiro.jp/
+
+   FreePWING
+   http://www.sra.co.jp/people/m-kasahr/freepwing/
+
+
+開発環境
+========
+
+   英辞郎 Ver.130
+   Debian GNU/Linux sid
+   Perl 5.12.4
+   FreePWING 1.5
+
+辞書の生成方法
+==============
+
+   必要な外部ファイル:
+
+   - FreePWING 1.3beta0 (以降) およびその実行に必須のプログラム群
+   - Jcode.pm
+   - オリジナルの辞書 (EIJI-<バージョン>.TXT)
+
+   生成手順:
+
+   1. オリジナルの辞書を入手し、任意の場所に展開します。辞書ファイルは、
+      ソース ファイルと同じディレクトリに置くことをお勧めします。
+
+   2. お使いの make コマンドが CR/LF の Makefile を扱えない場合は、Makefile
+      の改行コードを変更してください。
+
+   3. 必要に応じて Makefile を編集し、辞書ファイル名を指定している部分を書
+      き換えます。英辞郎 Ver.37 をお使いの場合で、辞書ファイルがソース ファ
+      イルと同じ場所に置かれていれば、ファイル名を修正する必要はありません。
+
+      * 英辞郎 Ver.37 以外を使う場合は、EIJIROVER を適切なバージョン番号に
+        変更します。
+
+      * 辞書ファイルのあるディレクトリがソース ファイルと異なる場合は、
+        SRCDIR を変更します。
+
+      * 万一英辞郎のファイル名が変更された場合も、適当に修正してください。
+
+   4. GNU make を使って make します。
+
+      % make [-I <fpwutils.mk のあるディレクトリ>]
+
+
+制限
+====
+
+   このスクリプトは、見出し語の各英単語を (冠詞や一部の前置詞を除いて) 条件検
+   索キーワードとして登録します。ただし、現在の FreePWING の仕様により、多く
+   の検索プログラムでは、条件検索を正しく行うことはできません (何もヒットしま
+   せん)。Windows 用の検索ソフトウェア DDwin では、条件検索が可能であることを
+   確認しています。
+
+
+Change Log
+==========
+
+2000-10-09 Rei <rei@wdic.org>
+
+   * eijiro-fpw1.1b (1.0.0.7)
+
+   * eijiro-fpw.pl: fixed a bug that a blank line will be inserted after
+     the title (keyword) when the first line of the word contains only
+     extra information to be removed (such as [@] or [level]).
+
+   * eijiro-fpw.pl: modified how to determine the keywords
+     for 'jouken-kensaku'.
+
+   * eijiro-fpw.pl: fix a parameter for finalize_fpwparser.
+
+2000-10-08 Rei <rei@wdic.org>
+
+   * eijiro-fpw1.1a (1.0.0.5)
+
+   * eijiro-fpw.pl: fixed a bug in regular expression, which had caused some
+     examples be removed.
+
+   * eijiro-fpw.pl: changed the indent level of examples from 2 to 3.
+
+2000-10-07 Rei <rei@wdic.org>
+
+   * eijiro-fpw1.0 (1.0.0.4), the first retail version.
+
+   * eijiro-fpw.pl: Added keywords for 'jouken-kensaku'.
+
+2000-10-05 Rei <rei@wdic.org>
+
+   * eijiro-fpw1.0 (1.0.0.2), pre-release version.
+
+
+-- EOF --

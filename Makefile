@@ -20,14 +20,6 @@ SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
 #SRCFILE = test.txt
 
 #
-# NKF:
-# kanji-code convertor to generate the catalogs.txt file. if not specified,
-# catalogs.sjis is copied to catalogs.txt as it is. so leave this variable
-# undefined on Windows.
-#
-#NKF = nkf -eSd
-
-#
 # CHARSET:
 # specify the charset for the output strings. it is just used to print
 # progress. if not specified, 'sjis' is used on Windows or 'euc' on other
@@ -42,7 +34,7 @@ SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
 CATSRC = catalogs.sjis
 PACKAGE = eijiro-fpw-1.1
 ARCHIVEEXTRA = readme.sjis copyright.sjis COPYING ${CATSRC}
-CLEANEXTRA = catalogs.txt
+CLEANEXTRA =
 DIR = eijiro
 
 FPWPARSER = eijiro-fpw.pl
@@ -59,13 +51,5 @@ package:
 	@echo
 	@echo You cannot redistribute EIJIRO, so target \'package\' is disabled.
 	@echo
-
-catalogs.txt: ${CATSRC}
-	rm -f $@
-ifdef NKF
-	${NKF} ${CATSRC} > catalogs.txt
-else
-	cp ${CATSRC} catalogs.txt
-endif
 
 # EOF

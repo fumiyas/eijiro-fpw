@@ -4,6 +4,6 @@ Type       = EPWING1
 Books      = 1
 
 [Book]
-Title      = "‰pŽ«˜Y"
+Title      = "±Ñ¼­Ïº"
 BookType   = 2001
 Directory  = "EIJIRO"

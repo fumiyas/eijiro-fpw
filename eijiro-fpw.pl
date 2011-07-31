@@ -190,8 +190,8 @@ sub initialize
 
 	print "Detected display character set: $opt_charset\n";
 
-	-f './copyright.sjis' ||
-		&error("A necessary file \'./copyright.sjis\' not found.");
+	-f './copyright.txt' ||
+		&error("A necessary file \'./copyright.txt\' not found.");
 }
 
 
@@ -498,13 +498,13 @@ sub write_copyright
 	my $username = '(unknown user)';
 
 	print "Writing copyright information...\n";
-	open(IN, '<./copyright.sjis') ||
-		&error("Failed to open \'./copyright.sjis\'");
+	open(IN, '<./copyright.txt') ||
+		&error("Failed to open \'./copyright.txt\'");
 
 	while (<IN>) {
 		s/\r?\n$//;
 		if (!/^$/) {
-			$fpwcopyright->add_text(Jcode::convert($_, 'euc', 'sjis')) ||
+			$fpwcopyright->add_text($_) ||
 				&error("Failed to write text ($_)", $fpwcopyright);
 		}
 		$fpwcopyright->add_newline() ||

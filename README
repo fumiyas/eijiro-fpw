@@ -1,4 +1,4 @@
-英辞郎 → JIS X 4081 変換スクリプト
+英辞郎 → EPING (JIS X 4081) 変換スクリプト
 eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
 
    Copyright (C) 2011 SATOH Fumiyasu @ OSS Technology, Inc.
@@ -11,11 +11,12 @@ eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
 ============
 
    - README	       このファイル
-   - copyright.sjis    著作権/使用上の注意 (辞書に取り込まれます)
-   - catalogs.sjis     catalogs.txt のソース ファイル
+   - copyright.txt     著作権/使用上の注意 (辞書に取り込まれます)
+   - catalogs.txt      EPWING カタログ内容 (辞書に取り込まれます)
    - eijiro-fpw.pl     FreePWING スクリプト
    - Makefile          GNU make 用の Makefile
-   - COPYING           GNU General Public License
+   - COPYING           GNU General Public License version 2
+   - ChangeLog         変更履歴
 
 
 オリジナル ファイル
@@ -50,14 +51,14 @@ eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
    1. オリジナルの辞書を入手し、任意の場所に展開します。辞書ファイルは、
       ソース ファイルと同じディレクトリに置くことをお勧めします。
 
-   2. お使いの make コマンドが CR/LF の Makefile を扱えない場合は、Makefile
-      の改行コードを変更してください。
+   2. お使いの make コマンドが LF (UNIX) の Makefile を扱えない場合は、
+      Makefile の改行コードを変更してください。
 
    3. 必要に応じて Makefile を編集し、辞書ファイル名を指定している部分を書
-      き換えます。英辞郎 Ver.37 をお使いの場合で、辞書ファイルがソース ファ
+      き換えます。英辞郎 Ver.130 をお使いの場合で、辞書ファイルがソース ファ
       イルと同じ場所に置かれていれば、ファイル名を修正する必要はありません。
 
-      * 英辞郎 Ver.37 以外を使う場合は、EIJIROVER を適切なバージョン番号に
+      * 英辞郎 Ver.130 以外を使う場合は、EIJIROVER を適切なバージョン番号に
         変更します。
 
       * 辞書ファイルのあるディレクトリがソース ファイルと異なる場合は、

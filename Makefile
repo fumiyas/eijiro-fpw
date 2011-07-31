@@ -33,7 +33,7 @@ SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
 
 CATSRC = catalogs.sjis
 PACKAGE = eijiro-fpw-1.1
-ARCHIVEEXTRA = readme.sjis copyright.sjis COPYING ${CATSRC}
+ARCHIVEEXTRA = readme.txt copyright.txt COPYING ChangeLog ${CATSRC}
 CLEANEXTRA =
 DIR = eijiro
 
@@ -52,4 +52,3 @@ package:
 	@echo You cannot redistribute EIJIRO, so target \'package\' is disabled.
 	@echo
 
-# EOF

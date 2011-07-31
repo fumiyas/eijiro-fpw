@@ -15,9 +15,9 @@
 # EIJIROVER, SRCDIR, SRCFILE:
 # the EIJIRO files to be converted.
 #
-EIJIROVER = 37
+EIJIROVER = 130
 SRCDIR = .
-SRCFILE := $(wildcard ${SRCDIR}/EIJI${EIJIROVER}??.TXT)
+SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
 #SRCFILE = test.txt
 
 #
@@ -41,7 +41,7 @@ SRCFILE := $(wildcard ${SRCDIR}/EIJI${EIJIROVER}??.TXT)
 #
 
 CATSRC = catalogs.sjis
-PACKAGE = eijiro-fpw1.0b
+PACKAGE = eijiro-fpw-1.1
 ARCHIVEEXTRA = readme.sjis copyright.sjis COPYING ${CATSRC}
 CLEANEXTRA = catalogs.txt
 DIR = eijiro

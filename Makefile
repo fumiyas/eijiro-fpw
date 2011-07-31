@@ -47,7 +47,7 @@ CLEANEXTRA = catalogs.txt
 DIR = eijiro
 
 FPWPARSER = eijiro-fpw.pl
-FPWPARSERFLAGS = -- --charset=${CHARSET} ${SRCFILE}
+FPWPARSERFLAGS = -c "${CHARSET}" "${SRCFILE}"
 
 # fpwutils.mk must be located in one of the make include directories or
 # you should user -I option.

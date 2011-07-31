@@ -1,0 +1,9 @@
+[Catalog]
+FileName   = catalogs
+Type       = EPWING1
+Books      = 1
+
+[Book]
+Title      = "‰pŽ«˜Y"
+BookType   = 2001
+Directory  = "EIJIRO"

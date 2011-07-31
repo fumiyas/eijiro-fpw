@@ -1,6 +1,5 @@
 #
 # Makefile for FreePWING version of EIJIRO
-# $Id: Makefile 1.0.0.3 2000/10/08 14:40:51 rei Exp $
 #
 # this makefile is designed for GNU make.
 # copyright (c) 2000, Rei <rei@wdic.org>. all rights reserved.

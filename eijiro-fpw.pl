@@ -1,6 +1,5 @@
 #                                                         -*- Perl -*-
 # eijiro-fpw - FreePWING script for EIJIRO
-# $Id: eijiro-fpw.pl 1.0.0.7 2000/10/08 15:32:32 rei Exp $
 #
 # !!! NOTICE !!!
 # DO NOT CHANGE THE KANJI-CODE OF THIS SCRIPT. IT SHOULD BE SHIFT JIS.

@@ -16,7 +16,7 @@ use FreePWING::FPWUtils::FPWParser;
 use strict "vars";
 
 my($fpwtext, $fpwheading, $fpwword2, $fpwkeyword, $fpwcopyright);
-my $opt_charset;	# sjis, euc (eucjp, ujis), jis or iso_2022_jp.
+my $opt_charset;	# sjis, euc (eucjp, ujis), jis, iso_2022_jp or utf8.
 
 my $sjis_any = "(?:[\x81-\x9f\xe0-\xfc][\x40-\x7e\x80-\xfc])";
 
@@ -165,12 +165,14 @@ sub initialize
 	usage(0) if ($opt_usage);
 
 	if (!defined($opt_charset) || '' eq $opt_charset) {
-		if ($ENV{'LANG'} =~ /ja_JP\.([a-zA-Z]+)$/) {
+		my $lang = $ENV{'LC_ALL'} || $ENV{'LANG'};
+		if ($lang =~ /ja_JP\.(\w+(-\w+)*)$/) {
 			$opt_charset = $1;
 		}
 	}
 
 	$opt_charset =~ tr/A-Z/a-z/;
+	$opt_charset =~ s/-//g;
 	if ('ujis' eq $opt_charset || 'eucjp' eq $opt_charset) {
 		$opt_charset = 'euc';
 	} elsif (!defined($opt_charset) || '' eq $opt_charset) {
@@ -184,7 +186,8 @@ sub initialize
 	} elsif ('sjis' ne $opt_charset
 			&& 'euc' ne $opt_charset
 			&& 'jis' ne $opt_charset
-			&& 'iso_2022_jp' ne $opt_charset) {
+			&& 'iso_2022_jp' ne $opt_charset
+			&& 'utf8' ne $opt_charset) {
 		&error("$opt_charset: Unknown character set");
 	}
 

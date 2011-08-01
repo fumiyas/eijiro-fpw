@@ -18,7 +18,9 @@ use strict "vars";
 my($fpwtext, $fpwheading, $fpwword2, $fpwkeyword, $fpwcopyright);
 my $opt_charset;	# sjis, euc (eucjp, ujis), jis, iso_2022_jp or utf8.
 
-my $sjis_any = "(?:[\x81-\x9f\xe0-\xfc][\x40-\x7e\x80-\xfc])";
+my $sjis_any_re = qr/(?:[\x81-\x9f\xe0-\xfc][\x40-\x7e\x80-\xfc])/;
+my $hiragana_re = qr/(?:\x82[\x9f-\xf1])/;	# [‚Ÿ-‚ñ]
+my $katakana_re = qr/(?:\x83[\x40-\x96])/;	# [ƒ@-ƒ–]
 
 my %skip_word = (
 	'a',	1,
@@ -66,7 +68,7 @@ while (<>) {
 	#
 	$current_word = $_;
 	$_ = '';
-	while ($current_word =~ s/^(.+)( : .+)$/\1/) {
+	while ($current_word =~ s/^(.+)( : .+)$/$1/) {
 		$_ = $2 . $_;
 	}
 	s/^ : //;
@@ -75,7 +77,7 @@ while (<>) {
 	#
 	# extract POS from the word if any.
 	#
-	if ($current_word =~ s/^(.+)\{((?:$sjis_any|[0-9\-])+)\}/\1/) {
+	if ($current_word =~ s/^(.+)\{((?:$sjis_any_re|[0-9\-])+)\}/$1/o) {
 		$current_pos = $2;
 		if ($current_pos =~ s/\-([0-9]+)$//) {
 			if ($current_pos eq $prev_pos) {
@@ -328,10 +330,9 @@ sub new_entry
 #
 sub write_word_info
 {
-	my $katakana = "(?:\x83[\x40-\x96])";	# [ƒ@-ƒ–]
 	my($info) = @_;
 
-	$info =~ s/y—z(?:$katakana|\x81[\x41\x5b])*//;
+	$info =~ s/y—z(?:$katakana_re|\x81[\x41\x5b])*//o;
 	$info =~ s/yƒŒƒxƒ‹z[0-9]*(?:A)*//;
 	$info =~ s/y‘åŠw“üz(?:A)*//;
 	$info =~ s/Ay/ y/g;
@@ -383,12 +384,10 @@ sub write_pos_index
 #
 sub write_meaning
 {
-	my $chars = "(?:[\x20-\x7d][\x20-\x7d]|$sjis_any)";
-	my $hiragana = "(?:\x82[\x9f-\xf1])";	# [‚Ÿ-‚ñ]
 	my(@list, $char, $next, $mean, $yorei);
 
 	$mean = shift(@_);
-	$mean =~ s/\x81\x6f(?:$hiragana|\x81[\x5e\x69\x6a]| )+\x81\x70//g;
+	$mean =~ s/\x81\x6f(?:$hiragana_re|\x81[\x5e\x69\x6a]| )+\x81\x70//go;
 
 	@list = unpack('C*', $mean);
 	$mean = '';
@@ -454,12 +453,12 @@ sub write_meaning
 	$mean =~ s/Ÿy/ y/g;
 	$mean =~ s/ ; /; /g;
 	$mean =~ s/  +/ /g;
-	$mean =~ s/([,\.!\?]) ([,\.])/\1\2/g;
+	$mean =~ s/([,\.!\?]) ([,\.])/$1$2/g;
 
 	#
 	# extract examples if any.
 	#
-	if ($mean =~ s/ \/ y—p—á(?:E$sjis_any+(?:\-[0-9]+)?)?z(.*)$//) {
+	if ($mean =~ s/ \/ y—p—á(?:E$sjis_any_re+(?:\-[0-9]+)?)?z(.*)$//o) {
 		$yorei = $1;
 	}
 

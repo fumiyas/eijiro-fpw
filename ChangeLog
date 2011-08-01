@@ -2,6 +2,9 @@
 
 	* Support newer EIJIRO data
 
+	* eijiro-fpw.pl: Fix regexp for a word class matching not to
+	  match with '{' in a Shift_JIS character
+
 2000-10-09 Rei <rei@wdic.org>
 
 	* eijiro-fpw1.1b (1.0.0.7)

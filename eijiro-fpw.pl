@@ -77,8 +77,8 @@ while (<>) {
 	#
 	# extract POS from the word if any.
 	#
-	if ($current_word =~ s/^(.+)\{((?:$sjis_any_re|[0-9\-])+)\}/$1/o) {
-		$current_pos = $2;
+	if ($current_word =~ s/\s*\{((?:$sjis_any_re|[0-9\-])+)\}//o) {
+		$current_pos = $1;
 		if ($current_pos =~ s/\-([0-9]+)$//) {
 			if ($current_pos eq $prev_pos) {
 				$pos_index++;
@@ -88,7 +88,6 @@ while (<>) {
 		} else {
 			$pos_index = 0;
 		}
-		$current_word =~ s/\s+$//;
 	} else {
 		$pos_index = 0;
 		$current_pos = '';

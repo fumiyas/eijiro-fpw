@@ -14,10 +14,9 @@
 # EIJIROVER, SRCDIR, SRCFILE:
 # the EIJIRO files to be converted.
 #
-EIJIROVER = 130
-SRCDIR = .
-SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
-#SRCFILE = test.txt
+EIJIROVER =	130
+SRCDIR =	.
+SRCFILE =	${SRCDIR}/EIJI-${EIJIROVER}.TXT
 
 #
 # CHARSET:
@@ -31,24 +30,16 @@ SRCFILE := ${SRCDIR}/EIJI-${EIJIROVER}.TXT
 # end of customizable variables.
 #
 
-CATSRC = catalogs.sjis
-PACKAGE = eijiro-fpw-1.1
-ARCHIVEEXTRA = readme.txt copyright.txt COPYING ChangeLog ${CATSRC}
+CATSRC =	catalogs.txt
+PACKAGE =	eijiro-fpw-1.1
+ARCHIVEEXTRA =	readme.txt copyright.txt COPYING ChangeLog ${CATSRC}
 CLEANEXTRA =
-DIR = eijiro
+DIR =		eijiro
 
-FPWPARSER = eijiro-fpw.pl
+FPWPARSER =	eijiro-fpw.pl
 FPWPARSERFLAGS = -c "${CHARSET}" "${SRCFILE}"
 
 # fpwutils.mk must be located in one of the make include directories or
 # you should user -I option.
 include fpwutils.mk
-
-#
-# define other targets.
-#
-package:
-	@echo
-	@echo You cannot redistribute EIJIRO, so target \'package\' is disabled.
-	@echo
 

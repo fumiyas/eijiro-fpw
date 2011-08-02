@@ -32,7 +32,7 @@ SRCFILE =	${SRCDIR}/EIJI-${EIJIROVER}.TXT
 
 CATSRC =	catalogs.txt
 PACKAGE =	eijiro-fpw-1.1
-ARCHIVEEXTRA =	readme.txt copyright.txt COPYING ChangeLog ${CATSRC}
+ARCHIVEEXTRA =	README COPYING ChangeLog copyright.txt ${CATSRC}
 CLEANEXTRA =
 DIR =		eijiro
 

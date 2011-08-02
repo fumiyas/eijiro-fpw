@@ -1,5 +1,5 @@
 英辞郎 → EPING (JIS X 4081) 変換スクリプト
-eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
+eijiro-fpw Ver.1.1 (eijiro-fpw-1.1-src.tar.gz)
 
    Copyright (C) 2011 SATOH Fumiyasu @ OSS Technology, Inc.
    Copyright (C) 2000, Rei <rei@wdic.org>
@@ -7,6 +7,12 @@ eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
 この eijiro-fpw バージョンは、
 http://openlab.ring.gr.jp/edict/fpw/dist/eijiro/eijiro-fpw1.0b-src.tar.gz を
 元に英辞郎 Ver.80 以降への対応といくつかのバグ修正を施したものです。
+
+ソースコードは github で維持・公開しています:
+
+  https://github.com/fumiyas/eijiro-fpw
+
+ご連絡は fumiyas＠osstech.jp (e-mail) か @satoh_fumiyas (Twitter) まで。
 
 収録ファイル
 ============

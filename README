@@ -2,10 +2,11 @@
 eijiro-fpw Ver.1.1 (eijiro-fpw-1.1.tar.gz)
 
    Copyright (C) 2011 SATOH Fumiyasu @ OSS Technology, Inc.
-
    Copyright (C) 2000, Rei <rei@wdic.org>
-   http://member.nifty.ne.jp/~satomii/freepwing/
 
+この eijiro-fpw バージョンは、
+http://openlab.ring.gr.jp/edict/fpw/dist/eijiro/eijiro-fpw1.0b-src.tar.gz を
+元に英辞郎 Ver.80 以降への対応といくつかのバグ修正を施したものです。
 
 収録ファイル
 ============

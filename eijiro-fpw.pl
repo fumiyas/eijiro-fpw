@@ -193,6 +193,21 @@ sub initialize
 }
 
 
+use constant MAXKEYWORDLEN => 128;
+
+sub trim_keyword(\$) {
+	my($ref) = @_;
+	local $_ = $$ref;
+	while (MAXKEYWORDLEN < length) {
+		s/\s+\S*$// and next;
+		$_ = substr($_, 0, MAXKEYWORDLEN);
+		s/\A((?:[\x00-\x7F]+|(?:[\x8E\xA1-\xFE][\xA1-\xFE])+|(?:\x8F[\xA1-\xFE][\xA1-\xFE])+)*).+/$1/;	# remove broken bytes
+		last;
+	}
+	$$ref = $_;
+}
+
+
 #-----------------------------------------------------------------------#
 #	writing routines													#
 #-----------------------------------------------------------------------#
@@ -242,12 +257,8 @@ sub new_entry
 			}
 
 		} else {
-			while (128 < length($key)) {
-				#
-				# too long word, truncate it.
-				#
-				$key =~ s/\s*[^\s]+$//;
-			}
+			trim_keyword($key);
+			next if length($key) == 0;
 			$fpwword2->add_entry($key, $heading_pos, $text_pos) ||
 				&error("Failed to add a search word ($key)", $fpwword2);
 
@@ -288,6 +299,8 @@ sub new_entry
 
 	foreach $key (@key) {
 		if (scalar(@key) <= 5 || !defined($skip_word{$key})) {
+			trim_keyword($key);
+			next if length($key) == 0;
 			$fpwkeyword->add_entry($key, $heading_pos, $text_pos) ||
 				&error("Failed to add keyword ($key)", $fpwkeyword);
 		}
@@ -298,14 +311,18 @@ sub new_entry
 	#
 	@key = split(/; /, $word);
 	$key = shift(@key);
+	trim_keyword($key);
 
-	if (!$fpwtext->add_keyword_start()
+	if (length($key) > 0 &&
+			(!$fpwtext->add_keyword_start()
 			|| !$fpwtext->add_text($key)
-			|| !$fpwtext->add_keyword_end()) {
+			|| !$fpwtext->add_keyword_end())) {
 		&error("Failed to add a keyword ($key)", $fpwtext);
 	}
 
 	foreach $key (@key) {
+		trim_keyword($key);
+		next if length($key) == 0;
 		if (!$fpwtext->add_text('; ')
 				|| !$fpwtext->add_keyword_start()
 				|| !$fpwtext->add_text($key)

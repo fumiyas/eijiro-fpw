@@ -109,7 +109,7 @@ while (defined(my $line = <>)) {
 		&new_entry($wc, $current_word);
 		$prev_word = $current_word;
 		$prev_pos = $current_pos;
-		if ($meaning =~ /^y/) {
+		if ($meaning =~ /^\y/) {
 			&write_word_info($meaning);
 			$fpwtext->add_indent_level(2);
 			next;

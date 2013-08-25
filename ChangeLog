@@ -3,6 +3,8 @@
 	* eijiro-fpw.pl: EIJI-<EIJIROVER>.TXT is encoded in CP932,
 	  not Shift_JIS.
 
+	* eijiro-fpw.pl: Replace non JIS X 0208 characters with "???" in words
+
 2011-08-01 SATOH Fumiyasu <fumiyas at OSS Technology Corp., Japan>
 
 	* Support newer EIJIRO data

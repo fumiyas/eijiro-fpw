@@ -549,6 +549,8 @@ sub cp932_to_eucjp
 	my $word = shift;
 
 	Encode::from_to($word, 'CP932', 'EUC-JP');
+	# Filter out non JIS X 0208 characters
+	$word =~ s/\x8F[\xA1-\xFE][\xA1-\xFE]/???/g;
 
 	return $word;
 }

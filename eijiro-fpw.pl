@@ -4,6 +4,7 @@
 # !!! NOTICE !!!
 # DO NOT CHANGE THE KANJI-CODE OF THIS SCRIPT. IT SHOULD BE SHIFT JIS.
 #
+# Copyright (C) 2011-2013 SATOH Fumiyasu @ OSS Technology Corp., Japan
 # Copyright (C) 2000, Rei <rei@wdic.org>.
 # This program is distributed in the hope that it will be useful, but
 # without any warranty. See the GNU General Public License for the details.
@@ -12,6 +13,7 @@
 use 5.005;
 use strict;
 use Getopt::Long;
+use Encode;
 use Jcode;
 use FreePWING::FPWUtils::FPWParser;
 
@@ -227,7 +229,7 @@ sub new_entry
 	$word =~ s/F/: /g;
 
 	&jprint("$index: $word\n");
-	$word = Jcode::convert($word, 'euc', 'sjis');
+	$word = cp932_to_eucjp($word);
 
 	$fpwtext->new_entry() ||
 		&error("Failed to add a new entry", $fpwtext);
@@ -349,7 +351,7 @@ sub write_word_info
 	$info =~ s/A//g;
 
 	if ($info !~ /^$/) {
-		if (!$fpwtext->add_text(Jcode::convert($info, 'euc', 'sjis'))
+		if (!$fpwtext->add_text(cp932_to_eucjp($info))
 				|| !$fpwtext->add_newline()) {
 			&error("Failed to add text ($info)", $fpwtext);
 		}
@@ -364,7 +366,7 @@ sub write_pos
 	my($pos, $index) = @_;
 
 	if ('' ne $pos) {
-		$fpwtext->add_text('[' . Jcode::convert($pos, 'euc', 'sjis') . ']') ||
+		$fpwtext->add_text('[' . cp932_to_eucjp($pos) . ']') ||
 			&error("Failed to write POS [$pos]", $fpwtext);
 	}
 	if (0 < $index) {
@@ -476,7 +478,7 @@ sub write_meaning
 	# write the meaning.
 	#
 	$mean =~ s/\s+$//;
-	if (!$fpwtext->add_text(Jcode::convert($mean, 'euc', 'sjis'))
+	if (!$fpwtext->add_text(cp932_to_eucjp($mean))
 			|| !$fpwtext->add_newline()) {
 		&error("Failed to write text ($mean)", $fpwtext);
 	}
@@ -491,7 +493,7 @@ sub write_meaning
 			$yorei =~ s/^\s+//;
 			$yorei =~ s/\s+$//;
 			$yorei = 'Ÿ ' . $yorei;
-			if (!$fpwtext->add_text(Jcode::convert($yorei, 'euc', 'sjis'))
+			if (!$fpwtext->add_text(cp932_to_eucjp($yorei))
 					|| !$fpwtext->add_newline()) {
 				&error("Failed to write an example ($yorei)", $fpwtext);
 			}
@@ -542,6 +544,14 @@ sub write_copyright
 	}
 }
 
+sub cp932_to_eucjp
+{
+	my $word = shift;
+
+	Encode::from_to($word, 'CP932', 'EUC-JP');
+
+	return $word;
+}
 
 #-----------------------------------------------------------------------#
 #	message output							#

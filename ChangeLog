@@ -1,4 +1,9 @@
-2011-08-01 SATOH Fumiyasu <fumiyas at OSS Technology, Inc., Japan>
+2013-08-25 SATOH Fumiyasu <fumiyas at OSS Technology Corp., Japan>
+
+	* eijiro-fpw.pl: EIJI-<EIJIROVER>.TXT is encoded in CP932,
+	  not Shift_JIS.
+
+2011-08-01 SATOH Fumiyasu <fumiyas at OSS Technology Corp., Japan>
 
 	* Support newer EIJIRO data
 

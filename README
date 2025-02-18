@@ -1,7 +1,7 @@
 英辞郎 → EPWING (JIS X 4081) 変換スクリプト
 eijiro-fpw Ver.1.2 (eijiro-fpw-1.2-src.tar.gz)
 
-   Copyright (C) 2011-2013 SATOH Fumiyasu @ OSS Technology Corp., Japan
+   Copyright (C) 2011-2013 SATOH Fumiyasu @ OSSTech Corp., Japan
    Copyright (C) 2000, Rei <rei@wdic.org>
 
 この eijiro-fpw バージョンは、
@@ -12,7 +12,7 @@ http://openlab.ring.gr.jp/edict/fpw/dist/eijiro/eijiro-fpw1.0b-src.tar.gz
 
   https://github.com/fumiyas/eijiro-fpw
 
-ご連絡は fumiyas＠osstech.jp (e-mail) か @satoh_fumiyasu (Twitter) まで。
+ご連絡は GitHub の issue 報告か @fumiyas3 (Twitter) まで。
 
 収録ファイル
 ============
